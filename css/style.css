@@ -99,7 +99,8 @@ p {
 
 /* padding */
 .my-p{
-    margin: 1rem 25rem;
+    width: 60%;
+    margin: 1rem auto;
     color: beige;
     font-size: 1rem;
 }
