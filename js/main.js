@@ -26,6 +26,8 @@ start.addEventListener('click', function () {
     tabella.innerHTML = ""
     tabella.classList = ""
     bombe = []
+    punteggio = 0
+
 
     // //se il livello selezionato e` Easy
     if (level.value == 'easy') {
@@ -124,17 +126,19 @@ function creaElemento(numero) {
 
             div.innerHTML = "LOSE";
             div.classList.add('lose');
-            alert('HAI PERSO.')
-
+            alert('HAI PERSO. Ricarica la pagina')
+            
 
         } else {
 
             //aggiungi inerText
-            div.innerText = numero;
+            div.innerText = '+1';
             punteggio++
             console.log(punteggio)
             pointsCalc.innerHTML = punteggio
         }
+
+        
 
     });
 
