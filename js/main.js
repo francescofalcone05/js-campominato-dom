@@ -12,6 +12,8 @@ let bombe = [];
 let punteggio = 0;
 //creo variabile con span dove stampare il punteggio finale
 let pointsCalc = document.getElementById('points');
+//variabile per stabilire la conclusione ndella partita
+let gameOver = false
 
 
 
@@ -61,11 +63,11 @@ function createArrayBombe(cellNum) {
 
         let numBomba = getRandomNumber(1, cellNum);
         console.log(numBomba)
-        if (bombe.includes(numBomba)) {
-            numBomba++
+        if (!bombe.includes(numBomba)) {
+            bombe.push(numBomba)
         } else {
 
-            bombe.push(numBomba)
+
         }
 
     }
@@ -118,29 +120,38 @@ function creaElemento(numero) {
     //aggiungo eventlistener click
     div.addEventListener('click', function () {
 
-        //aggiungi o rimuovi la classe color
-        div.classList.add('color');
-        console.log('ho cliccato', numero);
+        //se gameOver e` false
+        if (gameOver) {
 
-        if (bombe.includes(numero)) {
-
-            div.innerHTML = "LOSE";
-            div.classList.add('lose');
-            alert('HAI PERSO. Ricarica la pagina')
-            
+            //niente
 
         } else {
+            //aggiungi o rimuovi la classe color
+            div.classList.add('color');
+            console.log('ho cliccato', numero);
 
-            //aggiungi inerText
-            div.innerText = '+1';
-            punteggio++
-            console.log(punteggio)
-            pointsCalc.innerHTML = punteggio
+            if (bombe.includes(numero)) {
+
+                div.innerHTML = "LOSE";
+                div.classList.add('lose');
+                alert('HAI PERSO. Ricomincia')
+                gameOver = false
+                //
+                //if punteggio = numero celle meno 16 , hai vinto
+                //
+            } else {
+
+                //aggiungi inerText
+                div.innerText = '+1';
+                punteggio++
+                console.log(punteggio)
+                pointsCalc.innerHTML = punteggio
+
+
+            }
         }
 
-        
-
-    });
+        });
 
     return div
 
