@@ -1,0 +1,95 @@
+/*************** COMMON/CONTAINER *****************/
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: rgb(70, 70, 70);
+    padding-top: 1rem;
+}
+
+
+
+/************* HEADER *************/
+
+
+
+
+
+/************* MAIN *************/
+
+.center{
+text-align: center;
+}
+
+#btn{
+    font-size: 2rem;
+    padding: 0.5rem 1rem;
+    background-color: green;
+}
+
+.contenitore_easy{
+    width: 500px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 5rem auto;
+}
+.contenitore_medium{
+    width: 450px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 5rem auto;
+}
+.contenitore_hard{
+    width: 350px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 5rem auto;
+}
+
+.hide{
+    display: none;
+}
+
+.square{
+    width: 50px;
+    height: 50px;
+    border: solid 1px rgb(187, 183, 183);
+    text-align: center;
+    line-height: 3rem;
+}
+
+.color{
+    background-color: rgb(173, 130, 77);
+}
+
+#difficolty{
+
+    font-size: 2rem;
+    padding: 0.5rem;
+}
+
+/************* FOOTER *************/
+
+
+
+
+
+/************* RESPONSIVE *************/
+@media screen and (max-width: 1200px) {
+
+}
+
+@media screen and (max-width: 992px) {
+
+}
+
+@media screen and (max-width: 768px) {
+ 
+}
+
+@media screen and (max-width: 576px) {
+ 
+}
