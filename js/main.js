@@ -8,44 +8,42 @@ let tabella = document.getElementById('campo');
 let level = document.getElementById('difficolty');
 //creo array vuoto per poi inserirci inumeri random
 let bombe = [];
+//creo variabile per punteggio
+let punteggio = 0;
+//creo variabile con span dove stampare il punteggio finale
+let pointsCalc = document.getElementById('points');
 
 
-while(bombe.length < 16){
 
-    let numBomba = getRandomNumber (1, 100);
-    console.log(numBomba)
-    if (bombe.includes(numBomba)){
-        numBomba++
-    } else{
 
-        bombe.push(numBomba)
-    }
-    
-    
-}
+
 
 
 
 start.addEventListener('click', function () {
 
-    //ad ogni giro svuoto la tabella e la sua classList
-     tabella.innerHTML = ""
-     tabella.classList = ""
+    //ad ogni giro svuoto la tabella, la sua classList e l'array
+    tabella.innerHTML = ""
+    tabella.classList = ""
+    bombe = []
 
     // //se il livello selezionato e` Easy
     if (level.value == 'easy') {
         //richiamo funzione per creare e stampare la tabella a seconda del livello
-        generatedTabella(100, 'contenitore_easy')
+        generatedTabella(100, 'contenitore_easy');
+        createArrayBombe(100);
 
         //altrimenti se il livello selezionato e` Medium
     } else if (level.value == 'medium') {
         //richiamo funzione per creare e stampare la tabella a seconda del livello
-        generatedTabella(81, 'contenitore_medium')
+        generatedTabella(81, 'contenitore_medium');
+        createArrayBombe(81);
 
         //altrimenti se il livello selezionato e` Hard
     } else if (level.value == 'hard') {
         //richiamo funzione per creare e stampare la tabella a seconda del livello
-        generatedTabella(49, 'contenitore_hard')
+        generatedTabella(49, 'contenitore_hard');
+        createArrayBombe(49);
 
     }
 
@@ -54,10 +52,28 @@ start.addEventListener('click', function () {
 
 /**************FUNCTIONS****************/
 
+//creo funzione per creare l'array dei numeri bombe, di 16 numeri
+function createArrayBombe(cellNum) {
+
+    while (bombe.length < 16) {
+
+        let numBomba = getRandomNumber(1, cellNum);
+        console.log(numBomba)
+        if (bombe.includes(numBomba)) {
+            numBomba++
+        } else {
+
+            bombe.push(numBomba)
+        }
+
+    }
+};
+
+
 //creo una funzione per generare un numero random da min a max
 function getRandomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+};
 
 //funzione per rendere visibile la tabella e generare un tot di di quadrati
 function generatedTabella(numQuadrati, classeToAdd) {
@@ -79,7 +95,7 @@ function generatedTabella(numQuadrati, classeToAdd) {
 
     }
 
-}
+};
 
 
 //funzione per creare un elemento ed al click add\remove classi 
@@ -101,18 +117,25 @@ function creaElemento(numero) {
     div.addEventListener('click', function () {
 
         //aggiungi o rimuovi la classe color
-        div.classList.toggle('color');
-        console.log('ho cliccato', numero)
+        div.classList.add('color');
+        console.log('ho cliccato', numero);
 
-        //se dentro l'innerText non c'e` nulla
-        if (div.innerText == '') {
-            //aggiungi inerText
-            div.innerText = numero;
+        if (bombe.includes(numero)) {
+
+            div.innerHTML = "LOSE";
+            div.classList.add('lose');
+            alert('HAI PERSO.')
+
+
         } else {
 
-            //altrimenti svuota innerText
-            div.innerText = ''
+            //aggiungi inerText
+            div.innerText = numero;
+            punteggio++
+            console.log(punteggio)
+            pointsCalc.innerHTML = punteggio
         }
+
     });
 
     return div

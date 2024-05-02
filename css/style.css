@@ -1,11 +1,11 @@
 /*************** COMMON/CONTAINER *****************/
-*{
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-body{
+body {
     background-color: rgb(70, 70, 70);
     padding-top: 1rem;
 }
@@ -20,40 +20,48 @@ body{
 
 /************* MAIN *************/
 
-.center{
-text-align: center;
+
+/* testo centrato al body */
+.center {
+    text-align: center;
 }
 
-#btn{
-    font-size: 2rem;
+/* button play*/
+#btn {
+    font-size: 1rem;
     padding: 0.5rem 1rem;
     background-color: green;
 }
 
-.contenitore_easy{
+/* contenitori con diverse size a seconda delle difficolta` */
+.contenitore_easy {
     width: 500px;
     display: flex;
     flex-wrap: wrap;
-    margin: 5rem auto;
+    margin: 3rem auto;
 }
-.contenitore_medium{
+
+.contenitore_medium {
     width: 450px;
     display: flex;
     flex-wrap: wrap;
-    margin: 5rem auto;
+    margin: 3rem auto;
 }
-.contenitore_hard{
+
+.contenitore_hard {
     width: 350px;
     display: flex;
     flex-wrap: wrap;
-    margin: 5rem auto;
+    margin: 3rem auto;
 }
 
-.hide{
+/* display none */
+.hide {
     display: none;
 }
 
-.square{
+/* quadrati tabella */
+.square {
     width: 50px;
     height: 50px;
     border: solid 1px rgb(187, 183, 183);
@@ -61,14 +69,39 @@ text-align: center;
     line-height: 3rem;
 }
 
-.color{
+/* background al qadrato una volta cliccato */
+.color {
     background-color: rgb(173, 130, 77);
 }
 
-#difficolty{
+/* background al qadrato una volta cliccato quello perdente */
+.lose {
+    background-color: red;
+}
 
-    font-size: 2rem;
+/* select input */
+#difficolty {
+    font-size: 1rem;
     padding: 0.5rem;
+}
+
+/* span segnapunti */
+#points {
+    color: green;
+    padding: 0 0.5rem;
+}
+
+/* p segnapunti */
+p {
+    margin: 1rem;
+    font-size: 2rem;
+}
+
+/* padding */
+.my-p{
+    margin: 1rem 25rem;
+    color: beige;
+    font-size: 1rem;
 }
 
 /************* FOOTER *************/
@@ -78,18 +111,10 @@ text-align: center;
 
 
 /************* RESPONSIVE *************/
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1200px) {}
 
-}
+@media screen and (max-width: 992px) {}
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 768px) {}
 
-}
-
-@media screen and (max-width: 768px) {
- 
-}
-
-@media screen and (max-width: 576px) {
- 
-}
+@media screen and (max-width: 576px) {}
