@@ -14,21 +14,23 @@ let punteggio = 0;
 let pointsCalc = document.getElementById('points');
 //variabile per stabilire la conclusione ndella partita
 let gameOver = false
+//creo celle per poi salvare il totaale dei quadrati stampati
+let celle = ''
 
 
 
 
-
-
-
-
+//al click
 start.addEventListener('click', function () {
 
-    //ad ogni giro svuoto la tabella, la sua classList e l'array
+    //ad ogni giro svuoto la tabella, la sua classList, l'array, il punteggio ed il booleano che determina la fine della partia
     tabella.innerHTML = ""
     tabella.classList = ""
     bombe = []
     punteggio = 0
+    gameOver = false
+
+
 
 
     // //se il livello selezionato e` Easy
@@ -66,13 +68,11 @@ function createArrayBombe(cellNum) {
         if (!bombe.includes(numBomba)) {
             bombe.push(numBomba)
         } else {
-
-
+            //niente
         }
 
     }
 };
-
 
 //creo una funzione per generare un numero random da min a max
 function getRandomNumber(min, max) {
@@ -101,8 +101,7 @@ function generatedTabella(numQuadrati, classeToAdd) {
 
 };
 
-
-//funzione per creare un elemento ed al click add\remove classi 
+//creo una funzione per creare un elemento ed al click add\remove classi 
 function creaElemento(numero) {
 
     //creo un elemento div
@@ -117,6 +116,10 @@ function creaElemento(numero) {
     //stampo in pagina i div
     tabella.append(div);
 
+    //una volta creati i quadrati, mi salvo il totale 
+    celle = document.getElementsByClassName('square')
+    console.log(celle.length)
+
     //aggiungo eventlistener click
     div.addEventListener('click', function () {
 
@@ -125,35 +128,58 @@ function creaElemento(numero) {
 
             //niente
 
+        //altimenti
         } else {
             //aggiungi o rimuovi la classe color
             div.classList.add('color');
-            console.log('ho cliccato', numero);
+            // console.log('ho cliccato', numero);
 
+            //se il numero cliccato e` presente nell'array
             if (bombe.includes(numero)) {
 
+                //stampa lose dentro il quadrato
                 div.innerHTML = "LOSE";
+                //aggiungi la classe lose
                 div.classList.add('lose');
-                alert('HAI PERSO. Ricomincia')
-                gameOver = false
-                //
-                //if punteggio = numero celle meno 16 , hai vinto
-                //
+                //crea alert con timer di 1 secondo
+                setTimeout(function () {
+                    alert('HAI PERSO. Ricomincia')
+                }, 1 * 1000);
+                //frizza la pagina 
+                gameOver = true
+
+                //se abbiamo gia` cliccato su quel quadrato
+            } else if (div.innerText == '+1') {
+                //il punteggio non cambia
+                punteggio = punteggio
+
             } else {
 
                 //aggiungi inerText
                 div.innerText = '+1';
+                //aumenta il punteggio di 1
                 punteggio++
-                console.log(punteggio)
+                //stampa il punteggio in pagina
                 pointsCalc.innerHTML = punteggio
 
+                //se il punteggio e` uguale alla length delle celLe meno 16 
+                if (punteggio == celle.length - 16) {
+                    //hai vinto, quindi stampa alert con timer di 1 secondo
+                    setTimeout(function () {
+                        alert('HAI VINTO')
+                    }, 1 * 1000);
+
+                }
 
             }
         }
 
-        });
+    });
 
     return div
 
 };
+
+
+
 /***************************************/
